@@ -1,9 +1,6 @@
 import random
 
-# ANSII escape codes for farger på valgte terninger i lista
-#  Grønn      \033[1;32;40m Bright Green  \n 
-#  Reset(?)    \033[0m \n
-
+# Klassedefinisjoner
 class Terning():
     def __init__(self, verdi, behold):
         self.verdi = verdi
@@ -13,21 +10,44 @@ class Terning():
         self.behold=True
 
 # Funksjoner:
+
+# Skriver ut en liste med terningverdiene og om terningen er valgt å beholde
 def vis_terningoversikt(terningliste):
     for n in range(5):
-        if terningliste[n].behold==False:
-            
+        if terningliste[n].behold==False:           
             print ("Terning",str(n+1),":",terningliste[n].verdi)                                
         else:
-            # Skriver i grønn skrift dersom valgt å beholde (og så settes hvit farge igjen)
-            print ("Terning",str(n+1),":",terningliste[n].verdi," - beholdt!")    
+            print ("Terning",str(n+1),":",terningliste[n].verdi," - beholdt!") 
 
+
+# Lar spilleren velge hvilke terninger som skal beholdes
+def velge_terninger():
+    while True:
+        vis_terningoversikt(terningsett)
+
+        valgt_terning=input ("Skriv tallet til en terning du vil beholde, eller 0 for å avslutte valg av terninger: ")
+
+        if valgt_terning not in ["0","1","2","3","4","5"]:
+            print("Feil input! Prøv igjen...")
+            continue
+        elif valgt_terning == "0":
+            break
+        else:
+            terningsett[int(valgt_terning)-1].behold=True
+            print("Du har valgt å beholde terning",valgt_terning,"med verdi:",terningsett[int(valgt_terning)-1].verdi)
+
+# Kaster på nytt ikke beholdte terninger
+def kast_terninger_igjen(terningsett):
+    for n in range(5):
+        if terningsett[n].behold==False:
+            terningsett[n].verdi=random.randint(1,6)
 
 # ____________________________________Hovedspill______________________________________
 
 print("Yatzy spill!")
-input("Trykk RETURN for å kaste ditt første kast")
 
+# 1 kast ----------------------------------------
+input("Trykk RETURN for å kaste ditt første kast")
 antall_kast=1
 
 t0 = Terning(random.randint(1,6), False)
@@ -38,24 +58,28 @@ t4 = Terning(random.randint(1,6), False)
 
 terningsett= [t0,t1,t2,t3,t4]
 
-print("Resultat 1. kast:")
-# for n in range(5):
-#    print ("Terning",str(n+1),":",terningsett[n].verdi)
+print()
+print("------------------------- Resultat 1. kast: -----------------------------------")
+velge_terninger()
 
-behold_terninger = []
 
-while True:
+# 2 kast ---------------------------------------
+antall_kast=2
+kast_terninger_igjen(terningsett)
 
-    vis_terningoversikt(terningsett)
+print()
+print("--------------------  Resultat 2. kast: -------------------------")
 
-    valgt_terning=input ("Skriv tallet til en terning du vil beholde, eller 0 for å avslutte valg av terninger: ")
+velge_terninger()
 
-    if valgt_terning not in ["0","1","2","3","4","5"]:
-        print("Feil input! Prøv igjen...")
-        continue
-    elif valgt_terning == "0":
-        break
-    else:
-        terningsett[int(valgt_terning)-1].behold=True
-        print("Du har valgt å beholde terning",valgt_terning,"med verdi:",terningsett[int(valgt_terning)-1].verdi)
+# 3 kast ---------------------------------------
+antall_kast=3
+kast_terninger_igjen(terningsett)
 
+print()
+print("--------------------  Resultat 2. kast: -------------------------")
+
+velge_terninger()
+
+
+# Ferdig med å kaste terninger -------------------------------------------------------

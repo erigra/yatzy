@@ -14,16 +14,8 @@ class Terning():
 
 
 
-t1 = Terning(random.randint(1,6), False)
-t2 = Terning(random.randint(1,6), False)
-t3 = Terning(random.randint(1,6), False)
-t4 = Terning(random.randint(1,6), False)
-t5 = Terning(random.randint(1,6), False)
-t6 = Terning(random.randint(1,6), False)
 
 
-terningsett_verdi = [t1.verdi,t2.verdi,t3.verdi,t4.verdi,t5.verdi]
-terningsett_behold = [t1.behold,t2.behold,t3.behold,t4.behold,t5.behold]
 
 
 # Funksjoner:
@@ -40,11 +32,18 @@ print("Yatzy spill!")
 
 input("Trykk RETURN for å kaste ditt første kast")
 
-print (terningsett_verdi)
-print (terningsett_behold)
+antall_kast=1
 
-t1.behold=True
+t0 = Terning(random.randint(1,6), False)
+t1 = Terning(random.randint(1,6), False)
+t2 = Terning(random.randint(1,6), False)
+t3 = Terning(random.randint(1,6), False)
+t4 = Terning(random.randint(1,6), False)
 
-print (terningsett_behold)
-print (t1.verdi)
-print (t1.behold)
+terningsett= [t0,t1,t2,t3,t4]
+
+print("Resultat 1. kast:")
+for n in range(5):
+    print ("Terning",str(n+1),":",terningsett[n].verdi)
+
+

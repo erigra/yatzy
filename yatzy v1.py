@@ -11,13 +11,6 @@ class Terning():
 
 
 
-
-
-
-
-
-
-
 # Funksjoner:
 
 def terningkast():
@@ -29,7 +22,6 @@ def terningkast():
 # ____________________________________Hovedspill______________________________________
 
 print("Yatzy spill!")
-
 input("Trykk RETURN for å kaste ditt første kast")
 
 antall_kast=1

@@ -13,23 +13,23 @@ class Poengfelt():
         self.brukt = brukt
 
 
-enere0 = Poengfelt("Enere:     ", 0 , False )
-toere1 = Poengfelt("Toere:     ", 0 , False )
-treere2 = Poengfelt("Treere:   ", 0 , False )
-firere3 = Poengfelt("Firere:    ", 16 , True )
-femere4 = Poengfelt("Femere:    ", 0 , False )
-seksere5 = Poengfelt("Seksere:   ", 0 , False )
+enere0 = Poengfelt("A - Enere:     ", 0 , False )
+toere1 = Poengfelt("B - Toere:     ", 0 , False )
+treere2 = Poengfelt("C - Treere:   ", 0 , False )
+firere3 = Poengfelt("D - Firere:    ", 0 , False )
+femere4 = Poengfelt("E - Femere:    ", 0 , False )
+seksere5 = Poengfelt("F - Seksere:   ", 0 , False )
 delestrek6 = Poengfelt ("_______________________________", 0, False)
 delsum7 = Poengfelt("Delsum     ", 0 , False )
 bonus8 = Poengfelt("Bonus:     ", 0 , False )
-ett_par9 = Poengfelt("Ett par:   ", 0 , False )
-to_par10 = Poengfelt("To par:    ", 0 , False )
-tre_like11= Poengfelt("Tre like:  ", 0 , False )
-fire_like12 = Poengfelt("Fire like: ", 0 , False )
-hus13 = Poengfelt("Hus:       ", 0 , False )
-straight14 = Poengfelt("Straight:  ", 0 , False )
-yatzy15 = Poengfelt("Yatzy!:    ", 0 , False )
-sjanse16 = Poengfelt("Sjanse     ", 0 , False )
+ett_par9 = Poengfelt("G - Ett par:   ", 0 , False )
+to_par10 = Poengfelt("H - To par:    ", 0 , False )
+tre_like11= Poengfelt("I - Tre like:  ", 0 , False )
+fire_like12 = Poengfelt("J - Fire like: ", 0 , False )
+hus13 = Poengfelt("K - Hus:       ", 0 , False )
+straight14 = Poengfelt("L - Straight:  ", 0 , False )
+yatzy15 = Poengfelt("M - Yatzy!:    ", 0 , False )
+sjanse16 = Poengfelt("N - Sjanse     ", 0 , False )
 sluttstrek17 = Poengfelt ("_______________________________", 0, False)
 sum18 = Poengfelt("Sum:        ", 0 , False )
 
@@ -87,7 +87,7 @@ def kast_terninger_igjen(terningsett):
 #::::::::::::::::::::::::::::::::::::::::::::::::::::: TESTING, TESTING :::::::::::::::::::::::::::::
 
 
-vis_poengskjema(poeng_skjema)
+
 
 
 

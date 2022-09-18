@@ -33,8 +33,12 @@ def velge_terninger():
         elif valgt_terning == "0":
             break
         else:
-            terningsett[int(valgt_terning)-1].behold=True
-            print("Du har valgt å beholde terning",valgt_terning,"med verdi:",terningsett[int(valgt_terning)-1].verdi)
+            if terningsett[int(valgt_terning)-1].behold==False:
+                terningsett[int(valgt_terning)-1].behold=True
+                 # print("Du har valgt å beholde terning",valgt_terning,"med verdi:",terningsett[int(valgt_terning)-1].verdi)
+            else:
+                # print("Du har valgt å kaste på nytt terning",valgt_terning,"med verdi:",terningsett[int(valgt_terning)-1].verdi)
+                terningsett[int(valgt_terning)-1].behold=False
 
 # Kaster på nytt ikke beholdte terninger
 def kast_terninger_igjen(terningsett):
@@ -73,13 +77,27 @@ print("--------------------  Resultat 2. kast: -------------------------")
 velge_terninger()
 
 # 3 kast ---------------------------------------
+
 antall_kast=3
 kast_terninger_igjen(terningsett)
 
 print()
-print("--------------------  Resultat 2. kast: -------------------------")
-
-velge_terninger()
+print("--------------------  Resultat 3. kast: -------------------------")
+vis_terningoversikt(terningsett)
 
 
 # Ferdig med å kaste terninger -------------------------------------------------------
+
+# Lager en ny liste med bare terningverdier
+endelige_verdier = []
+for n in range(6):
+    endelige_verdier[n]=terningsett[n].verdi
+
+# Lager en liste med antallet av hver verdi  
+antall_oversikt = []
+for n in range(1, 7):
+    antall_oversikt.append(endelige_verdier.count(n))
+
+
+print(antall_oversikt)
+

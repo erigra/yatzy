@@ -178,6 +178,19 @@ while True:
 
 
 
+    # Summer poeng så langt
+    # Delsum
+    for n in range(7):
+        delsum = 0
+        delsum += poeng_skjema[n].verdi
+    poeng_skjema[7].verdi = delsum
+    
+    # Totalsum
+    for n in range(7,18):
+        totalsum = 0
+        totalsum += poeng_skjema[n].verdi
+    poeng_skjema[18].verdi = totalsum
+
 
     vis_poengskjema(poeng_skjema)
 

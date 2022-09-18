@@ -20,7 +20,7 @@ firere3 = Poengfelt("D - Firere:    ", 0 , False )
 femere4 = Poengfelt("E - Femere:    ", 0 , False )
 seksere5 = Poengfelt("F - Seksere:   ", 0 , False )
 delestrek6 = Poengfelt ("_______________________________", 0, False)
-delsum7 = Poengfelt("Delsum     ", 0 , False )
+delsum7 = Poengfelt("Delsum         ", 0 , False )
 bonus8 = Poengfelt("Bonus:     ", 0 , False )
 ett_par9 = Poengfelt("G - Ett par:   ", 0 , False )
 to_par10 = Poengfelt("H - To par:    ", 0 , False )
@@ -28,10 +28,10 @@ tre_like11= Poengfelt("I - Tre like:  ", 0 , False )
 fire_like12 = Poengfelt("J - Fire like: ", 0 , False )
 hus13 = Poengfelt("K - Hus:       ", 0 , False )
 straight14 = Poengfelt("L - Straight:  ", 0 , False )
-yatzy15 = Poengfelt("M - Yatzy!:    ", 0 , False )
-sjanse16 = Poengfelt("N - Sjanse     ", 0 , False )
+yatzy15 = Poengfelt("M - YATZY!:    ", 0 , False )
+sjanse16 = Poengfelt("N - Sjanse:    ", 0 , False )
 sluttstrek17 = Poengfelt ("_______________________________", 0, False)
-sum18 = Poengfelt("Sum:        ", 0 , False )
+sum18 = Poengfelt("Sum:            ", 0 , False )
 
 # En Tuple som har 19 elementer (0-18)
 poeng_skjema=(enere0, toere1, treere2, firere3, femere4, seksere5, delestrek6, delsum7, bonus8, ett_par9, to_par10, tre_like11, fire_like12, hus13, straight14, yatzy15, sjanse16, sluttstrek17, sum18)
@@ -140,7 +140,9 @@ while True:
     for n in range(1, 7):
         antall_oversikt.append(endelige_verdier.count(n))
 
+    print("Du endte opp med følgende terninger:")
     print(endelige_verdier)
+    print()
     vis_poengskjema(poeng_skjema) 
 
     valg=input("Skriv bokstaven foran der du vil putte denne kasteserien (eksempel H for To par): ").upper() 
@@ -180,16 +182,18 @@ while True:
 
     # Summer poeng så langt
     # Delsum
-    for n in range(7):
-        delsum = 0
+    delsum = 0
+    for n in range(7):    
         delsum += poeng_skjema[n].verdi
     poeng_skjema[7].verdi = delsum
+    poeng_skjema[7].brukt=True
     
     # Totalsum
+    totalsum = 0
     for n in range(7,18):
-        totalsum = 0
         totalsum += poeng_skjema[n].verdi
     poeng_skjema[18].verdi = totalsum
+    poeng_skjema[18].brukt=True
 
 
     vis_poengskjema(poeng_skjema)

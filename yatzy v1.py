@@ -41,6 +41,7 @@ poeng_skjema=(enere0, toere1, treere2, firere3, femere4, seksere5, delestrek6, d
 
 # Skriver ut poengskjemaet
 def vis_poengskjema(poengskjema):
+    print()
     print("POENGSKJEMA: ")
     for n in range (19):
         if poengskjema[n].brukt==False:
@@ -84,6 +85,18 @@ def kast_terninger_igjen(terningsett):
         if terningsett[n].behold==False:
             terningsett[n].verdi=random.randint(1,6)
 
+# De forskjellige sjekkene mot forskjellige verdifelt
+
+def poeng_til_enkelt_terning(terningfordeling):
+    valg=input ("Hvilken terning vil du sette denne runden på? ")
+    
+
+
+
+
+
+
+
 #::::::::::::::::::::::::::::::::::::::::::::::::::::: TESTING, TESTING :::::::::::::::::::::::::::::
 
 
@@ -96,6 +109,7 @@ def kast_terninger_igjen(terningsett):
 # ____________________________________Hovedspill______________________________________
 
 print("Yatzy spill!")
+
 
 while True:
 
@@ -144,6 +158,29 @@ while True:
     antall_oversikt = []
     for n in range(1, 7):
         antall_oversikt.append(endelige_verdier.count(n))
+
+    print(endelige_verdier)
+    vis_poengskjema(poeng_skjema) 
+
+    valg=input("Skriv bokstaven foran der du vil putte denne kasteserien (eksempel H for To par): ").upper() 
+
+    if valg in ["A","B","C","D","E"]: 
+        liste = { "A":0, "B":1, "C":2, "D":3, "E":4 }
+        print ("Du har",antall_oversikt[liste[valg]], str(liste[valg]+1),"' ere, det blir ",(antall_oversikt[liste[valg]]*(liste[valg]+1)),"poeng")
+        poeng_skjema[liste[valg]].verdi=(antall_oversikt[liste[valg]]*(liste[valg]+1))
+        poeng_skjema[liste[valg]].brukt=True
+
+    
+
+
+
+
+
+
+    vis_poengskjema(poeng_skjema)
+
+
+   
 
 
 

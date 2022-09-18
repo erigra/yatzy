@@ -166,7 +166,7 @@ while True:
 
     if valg in ["A","B","C","D","E"]: 
         liste = { "A":0, "B":1, "C":2, "D":3, "E":4 }
-        print ("Du har",antall_oversikt[liste[valg]], str(liste[valg]+1),"' ere, det blir ",(antall_oversikt[liste[valg]]*(liste[valg]+1)),"poeng")
+        print (f"Du har {antall_oversikt[liste[valg]]} stk {str(liste[valg]+1)}'ere, det blir {(antall_oversikt[liste[valg]]*(liste[valg]+1))} poeng")
         poeng_skjema[liste[valg]].verdi=(antall_oversikt[liste[valg]]*(liste[valg]+1))
         poeng_skjema[liste[valg]].brukt=True
 

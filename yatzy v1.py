@@ -90,14 +90,13 @@ vis_terningoversikt(terningsett)
 
 # Lager en ny liste med bare terningverdier
 endelige_verdier = []
-for n in range(6):
-    endelige_verdier[n]=terningsett[n].verdi
+for n in range(5):
+    endelige_verdier.append(terningsett[n].verdi)
 
 # Lager en liste med antallet av hver verdi  
 antall_oversikt = []
 for n in range(1, 7):
     antall_oversikt.append(endelige_verdier.count(n))
-
 
 print(antall_oversikt)
 

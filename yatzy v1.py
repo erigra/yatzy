@@ -6,10 +6,45 @@ class Terning():
         self.verdi = verdi
         self.behold = behold
 
-    def behold_terning(self):
-        self.behold=True
+class Poengfelt():
+    def __init__(self, navn, verdi, brukt):
+        self.navn = navn
+        self.verdi = verdi
+        self.brukt = brukt
+
+
+enere = Poengfelt("Enere:    ", 0 , False )
+toere = Poengfelt("Toere:    ", 0 , False )
+treere = Poengfelt("Treere:   ", 0 , False )
+firere = Poengfelt("Firere:   ", 0 , False )
+femere = Poengfelt("Femere:   ", 0 , False )
+seksere = Poengfelt("Seksere:  ", 0 , False )
+delestrek = Poengfelt ("_______________________________", 0, True)
+delsum = Poengfelt("Delsum    ", 0 , False )
+bonus = Poengfelt("Bonus:    ", 0 , False )
+ett_par = Poengfelt("Ett par:  ", 0 , False )
+to_par = Poengfelt("To par:   ", 0 , False )
+tre_like= Poengfelt("Tre like: ", 0 , False )
+fire_like = Poengfelt("Fire like:", 0 , False )
+hus = Poengfelt("Hus:      ", 0 , False )
+straight = Poengfelt("Straight: ", 0 , False )
+yatzy = Poengfelt("Yatzy!:   ", 0 , False )
+sjanse = Poengfelt("Sjanse    ", 0 , False )
+sluttstrek = Poengfelt ("_______________________________", 0, True)
+sum = Poengfelt("Sum:       ", 0 , False )
+
+# En Tuple som har 19 elementer (0-18)
+poeng_skjema=(enere, toere, treere, firere, femere, seksere, delestrek, delsum, bonus, ett_par, to_par, tre_like, fire_like, hus, straight, yatzy, sjanse, sluttstrek, sum)
+
 
 # Funksjoner:
+
+# Skriver ut poengskjemaet
+def vis_poengskjema(poengskjema):
+    print("POENGSKJEMA: ")
+    for n in range (19):
+        print(poengskjema[n].navn,poengskjema[n].verdi)
+
 
 # Skriver ut en liste med terningverdiene og om terningen er valgt å beholde
 def vis_terningoversikt(terningliste):
@@ -46,13 +81,22 @@ def kast_terninger_igjen(terningsett):
         if terningsett[n].behold==False:
             terningsett[n].verdi=random.randint(1,6)
 
+#::::::::::::::::::::::::::::::::::::::::::::::::::::: TESTING, TESTING :::::::::::::::::::::::::::::
+
+
+vis_poengskjema(poeng_skjema)
+
+
+
+
+
 # ____________________________________Hovedspill______________________________________
 
 print("Yatzy spill!")
 
 # 1 kast ----------------------------------------
-input("Trykk RETURN for å kaste ditt første kast")
-antall_kast=1
+input("Trykk RETURN for å kaste ditt første kast!")
+antall_kast = 1
 
 t0 = Terning(random.randint(1,6), False)
 t1 = Terning(random.randint(1,6), False)
@@ -60,7 +104,7 @@ t2 = Terning(random.randint(1,6), False)
 t3 = Terning(random.randint(1,6), False)
 t4 = Terning(random.randint(1,6), False)
 
-terningsett= [t0,t1,t2,t3,t4]
+terningsett = [t0,t1,t2,t3,t4]
 
 print()
 print("------------------------- Resultat 1. kast: -----------------------------------")
@@ -76,8 +120,8 @@ print("--------------------  Resultat 2. kast: -------------------------")
 
 velge_terninger()
 
-# 3 kast ---------------------------------------
 
+# 3 kast ---------------------------------------
 antall_kast=3
 kast_terninger_igjen(terningsett)
 
@@ -98,5 +142,5 @@ antall_oversikt = []
 for n in range(1, 7):
     antall_oversikt.append(endelige_verdier.count(n))
 
-print(antall_oversikt)
+
 

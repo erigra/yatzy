@@ -161,7 +161,7 @@ while True:
         pass
 
     # To par
-    if valg == "G":
+    if valg == "H":
         pass
 
     # 3 like
@@ -178,7 +178,32 @@ while True:
             poeng_skjema[12].verdi=(4*(antall_oversikt.index(max(antall_oversikt))+1))
             poeng_skjema[12].brukt=True
 
+    # Hus
+    if valg == "K":
+        if 3 in antall_oversikt and 2 in antall_oversikt:
+            print(f"Du fikk hus med {sum(endelige_verdier)} poeng.")
+            poeng_skjema[13].verdi = sum(endelige_verdier)
+            poeng_skjema[13].brukt = True
 
+    # Straight
+    if valg == "L":
+        if max(antall_oversikt)==1:
+            print(f"Du har fått straight, det er 15 poeng.")
+            poeng_skjema[14].verdi = 15
+            poeng_skjema[14].brukt = True
+
+    # YATZY!
+    if valg == "M":
+        if 5 in antall_oversikt:
+            print(f"Gratulerer, du har fått Yatzy! Du har 5 stk {antall_oversikt.index(max(antall_oversikt))+1}ere")
+            poeng_skjema[15].verdi = sum(endelige_verdier)
+            poeng_skjema[15].brukt = True
+     
+    # Sjanse
+    if valg == "N":
+        print(f"Du putter dette på sjanse og får {sum(endelige_verdier)} poeng")
+        poeng_skjema[16].verdi = sum(endelige_verdier)
+        poeng_skjema[16].brukt = True
 
     # Summer poeng så langt
     # Delsum

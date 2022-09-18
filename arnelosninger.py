@@ -59,5 +59,5 @@ def calc_yatzy_score(dice):
 
 
 if __name__ == '__main__':
-    throw = [4, 4, 3, 3, 3]
+    throw = [3, 3, 4, 4, 3]
     calc_yatzy_score(throw)

@@ -195,8 +195,8 @@ while True:
     # YATZY!
     if valg == "M":
         if 5 in antall_oversikt:
-            print(f"Gratulerer, du har fått Yatzy! Du har 5 stk {antall_oversikt.index(max(antall_oversikt))+1}ere")
-            poeng_skjema[15].verdi = sum(endelige_verdier)
+            print(f"Gratulerer, du har fått Yatzy! Du har 5 stk {antall_oversikt.index(max(antall_oversikt))+1}ere og får 50 poeng!")
+            poeng_skjema[15].verdi = 50
             poeng_skjema[15].brukt = True
      
     # Sjanse
@@ -205,13 +205,17 @@ while True:
         poeng_skjema[16].verdi = sum(endelige_verdier)
         poeng_skjema[16].brukt = True
 
-    # Summer poeng så langt
+    
+    # Sumer poeng så langt _________________________
     # Delsum
     delsum = 0
     for n in range(7):    
         delsum += poeng_skjema[n].verdi
     poeng_skjema[7].verdi = delsum
     poeng_skjema[7].brukt=True
+    if delsum > 62:                     # Bonus ved 63 poeng over streken
+        poeng_skjema[8].verdi = 50
+        poeng_skjema[8].brukt = True
     
     # Totalsum
     totalsum = 0

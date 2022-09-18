@@ -185,10 +185,10 @@ while True:
             poeng_skjema[13].verdi = sum(endelige_verdier)
             poeng_skjema[13].brukt = True
 
-    # Straight
+    # Liten Straight
     if valg == "L":
-        if max(antall_oversikt)==1:
-            print(f"Du har fått straight, det er 15 poeng.")
+        if max(antall_oversikt)==1 and antall_oversikt[5]==0:
+            print(f"Du har fått liten straight, det er 15 poeng.")
             poeng_skjema[14].verdi = 15
             poeng_skjema[14].brukt = True
 

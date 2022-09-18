@@ -85,26 +85,7 @@ def kast_terninger_igjen(terningsett):
         if terningsett[n].behold==False:
             terningsett[n].verdi=random.randint(1,6)
 
-# De forskjellige sjekkene mot forskjellige verdifelt
-
-def poeng_til_enkelt_terning(terningfordeling):
-    valg=input ("Hvilken terning vil du sette denne runden på? ")
     
-
-
-
-
-
-
-
-#::::::::::::::::::::::::::::::::::::::::::::::::::::: TESTING, TESTING :::::::::::::::::::::::::::::
-
-
-
-
-
-
-
 
 # ____________________________________Hovedspill______________________________________
 
@@ -163,16 +144,37 @@ while True:
     vis_poengskjema(poeng_skjema) 
 
     valg=input("Skriv bokstaven foran der du vil putte denne kasteserien (eksempel H for To par): ").upper() 
+    print()
+    print()
 
-    if valg in ["A","B","C","D","E"]: 
-        liste = { "A":0, "B":1, "C":2, "D":3, "E":4 }
+    # Sette poeng på enkeltterninger 1-6
+    if valg in ["A","B","C","D","E","F"]: 
+        liste = { "A":0, "B":1, "C":2, "D":3, "E":4, "F":5 }
         print (f"Du har {antall_oversikt[liste[valg]]} stk {str(liste[valg]+1)}'ere, det blir {(antall_oversikt[liste[valg]]*(liste[valg]+1))} poeng")
         poeng_skjema[liste[valg]].verdi=(antall_oversikt[liste[valg]]*(liste[valg]+1))
         poeng_skjema[liste[valg]].brukt=True
 
-    
+    # Ett par
+    if valg == "G":
+        pass
 
+    # To par
+    if valg == "G":
+        pass
 
+    # 3 like
+    if valg == "I":
+        if max(antall_oversikt) >= 3:
+            print (f"Du har {max(antall_oversikt)} stk {antall_oversikt.index(max(antall_oversikt))+1}'ere, det blir {(3*(antall_oversikt.index(max(antall_oversikt))+1))} poeng")
+            poeng_skjema[11].verdi=(3*(antall_oversikt.index(max(antall_oversikt))+1))
+            poeng_skjema[11].brukt=True
+
+    # 4 like
+    if valg == "J":
+        if max(antall_oversikt) >= 4:
+            print (f"Du har {max(antall_oversikt)} stk {antall_oversikt.index(max(antall_oversikt))+1}'ere, det blir {(4*(antall_oversikt.index(max(antall_oversikt))+1))} poeng")
+            poeng_skjema[12].verdi=(4*(antall_oversikt.index(max(antall_oversikt))+1))
+            poeng_skjema[12].brukt=True
 
 
 

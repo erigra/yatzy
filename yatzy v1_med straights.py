@@ -262,10 +262,10 @@ while True:
     
     # Totalsum
     totalsum = 0
-    for n in range(7,18):
+    for n in range(7,19):
         totalsum += poeng_skjema[n].verdi
-    poeng_skjema[18].verdi = totalsum
-    poeng_skjema[18].brukt=True
+    poeng_skjema[19].verdi = totalsum
+    poeng_skjema[19].brukt=True
 
 
     vis_poengskjema(poeng_skjema)

@@ -157,12 +157,47 @@ while True:
         poeng_skjema[liste[valg]].brukt=True
 
     # Ett par
-    if valg == "G":
-        pass
+    if valg == "G" and max(antall_oversikt)>=2:
+        parverdi=[]
+        for n in range(6):
+            if antall_oversikt[n]>=2:
+                parverdi.append(2*(n+1))
+        
+        # Det finnes to par i resultatet
+        if len(parverdi)==2:                
+            print(f"Du har 2 par.") 
+            print (f"Nr 1: ett par {parverdi[0]/2}'ere, med verdi {parverdi[0]} ")
+            print (f"Nr 2: ett par {parverdi[1]/2}'ere, med verdi {parverdi[1]} ")
+            
+            while True:
+                parvalg = input("Velg 1 eller 2: ")
+                if parvalg in ["1","2"]:
+                    if parvalg == "1":
+                        poeng_skjema[9].verdi = parverdi[0]
+                        poeng_skjema[9].brukt = True
+                        break
+                    else:
+                        poeng_skjema[9].verdi = parverdi[1]
+                        poeng_skjema[9].brukt = True
+                        break
+                else:
+                    continue
+
+        # Det finnes kun ett par i resultatet
+        elif len(parverdi)==1:          
+            print (f"Du har ett par {parverdi[0]/2}'ere, med verdi {parverdi[0]} ")
+            poeng_skjema[9].verdi = parverdi[0]
+            poeng_skjema[9].brukt = True
 
     # To par
-    if valg == "H":
-        pass
+    if valg == "H" and max(antall_oversikt)>=2:
+        parverdi=[]
+        for n in range(6):
+            if antall_oversikt[n]>=2:
+                parverdi.append(2*(n+1))
+        print(f"Du har to {parverdi[0]/2}'ere, og to {parverdi[1]/2}'ere, med verdi {parverdi[0]+parverdi[1]} ")
+        poeng_skjema[10].verdi = parverdi[0]+parverdi[1]
+        poeng_skjema[10].brukt = True
 
     # 3 like
     if valg == "I":

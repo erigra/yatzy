@@ -88,8 +88,8 @@ def kast_terninger_igjen(terningsett):
             terningsett[n].verdi=random.randint(1,6)
 
 # Feilmelding ved opptatt felt
-def brukt_felt_mld():
-    print("Du har allerede benyttet dette feltet, vennligst velg et annet!")
+def feil_felt_mld():
+    print("Du kan ikke bruke dette feltet, vennligst velg et annet!")
     print()    
 
 # Funksjon som kalles idet antall kast = 15
@@ -139,7 +139,7 @@ while True:
     for n in range(5):
         endelige_verdier.append(terningsett[n].verdi)
 
-    # Lager en liste med antallet av hver verdi for denne runden  
+    # Lager en liste med antallet av hver verdi for denne runden (Arne!) 
     antall_oversikt = []
     for n in range(1, 7):
         antall_oversikt.append(endelige_verdier.count(n))
@@ -147,7 +147,7 @@ while True:
     antall_kast+=1
 
 
-    # Valg løkke for å sette poeng på poengskjema
+    # Valg-løkke for å sette poeng på poengskjema
     while True:
         print()
         print()
@@ -156,7 +156,7 @@ while True:
         print()
         vis_poengskjema(poeng_skjema) 
 
-        valg=input("Skriv bokstaven der du vil sett denne kasteserien (eller skriv X for å stryke et felt)): ").upper() 
+        valg=input("Skriv bokstaven der du vil sette denne kasteserien (eller skriv X for å stryke et felt)): ").upper() 
         print()
         
         # Sjekk rett input
@@ -173,13 +173,13 @@ while True:
                     poeng_skjema[bokstav_nummer_liste[strykefelt]].verdi=0
                     break
                 else:
-                    brukt_felt_mld()
+                    feil_felt_mld()
                     continue
 
         # Sjekk om feltet er brukt allerede
         if valg != "X":
             if poeng_skjema[bokstav_nummer_liste[valg]].brukt == True:
-                brukt_felt_mld()
+                feil_felt_mld()
                 continue   
 
         # Sette poeng på enkeltterninger 1-6
@@ -190,54 +190,74 @@ while True:
             poeng_skjema[bokstav_nummer_liste[valg]].brukt=True
 
         # Ett par
-        if valg == "G" and max(antall_oversikt)>=2:
-            parverdi=[]
-            for n in range(6):
-                if antall_oversikt[n]>=2:
-                    parverdi.append(2*(n+1))
-            
-            # Det finnes to par i resultatet
-            if len(parverdi)==2:                
-                print(f"Du har 2 par.") 
-                print (f"Nr 1: ett par {int(parverdi[0]/2)}'ere, med verdi {int(parverdi[0])} ")
-                print (f"Nr 2: ett par {int(parverdi[1]/2)}'ere, med verdi {int(parverdi[1])} ")
+        if valg == "G": 
+            if max(antall_oversikt)>=2:
+                parverdi=[]
+                for n in range(6):
+                    if antall_oversikt[n]>=2:
+                        parverdi.append(2*(n+1))
                 
-                while True:
-                    parvalg = input("Velg 1 eller 2: ")
-                    if parvalg in ["1","2"]:
-                        if parvalg == "1":
-                            poeng_skjema[9].verdi = parverdi[0]
-                            poeng_skjema[9].brukt = True
-                            break
+                # Det finnes to par i resultatet
+                if len(parverdi)==2:                
+                    print(f"Du har 2 par.") 
+                    print (f"Nr 1: ett par {int(parverdi[0]/2)}'ere, med verdi {int(parverdi[0])} ")
+                    print (f"Nr 2: ett par {int(parverdi[1]/2)}'ere, med verdi {int(parverdi[1])} ")
+                    
+                    while True:
+                        parvalg = input("Velg 1 eller 2: ")
+                        if parvalg in ["1","2"]:
+                            if parvalg == "1":
+                                poeng_skjema[9].verdi = parverdi[0]
+                                poeng_skjema[9].brukt = True
+                                break
+                            else:
+                                poeng_skjema[9].verdi = parverdi[1]
+                                poeng_skjema[9].brukt = True
+                                break
                         else:
-                            poeng_skjema[9].verdi = parverdi[1]
-                            poeng_skjema[9].brukt = True
-                            break
-                    else:
-                        continue
+                            continue
 
-            # Det finnes kun ett par i resultatet
-            elif len(parverdi)==1:          
-                print (f"Du har ett par {int(parverdi[0]/2)}'ere, med verdi {int(parverdi[0])} ")
-                poeng_skjema[9].verdi = parverdi[0]
-                poeng_skjema[9].brukt = True
+                # Det finnes kun ett par i resultatet
+                elif len(parverdi)==1:          
+                    print (f"Du har ett par {int(parverdi[0]/2)}'ere, med verdi {int(parverdi[0])} ")
+                    poeng_skjema[9].verdi = parverdi[0]
+                    poeng_skjema[9].brukt = True
+
+            else:
+                feil_felt_mld()
+                continue 
+
+
+
+
 
         # To par
-        if valg == "H" and max(antall_oversikt)>=2:
-            parverdi=[]
-            for n in range(6):
-                if antall_oversikt[n]>=2:
-                    parverdi.append(2*(n+1))
-            print(f"Du har to {parverdi[0]/2}'ere, og to {parverdi[1]/2}'ere, med verdi {parverdi[0]+parverdi[1]} ")
-            poeng_skjema[10].verdi = parverdi[0]+parverdi[1]
-            poeng_skjema[10].brukt = True
-
+        if valg == "H":
+            if max(antall_oversikt)>=2:
+                parverdi=[]
+                for n in range(6):
+                    if antall_oversikt[n]>=2:
+                        parverdi.append(2*(n+1))
+                if len(parverdi)==2:
+                    print(f"Du har to {parverdi[0]/2}'ere, og to {parverdi[1]/2}'ere, med verdi {parverdi[0]+parverdi[1]} ")
+                    poeng_skjema[10].verdi = parverdi[0]+parverdi[1]
+                    poeng_skjema[10].brukt = True
+                else:
+                    feil_felt_mld()
+                    continue
+            else:
+                feil_felt_mld()
+                continue
+                
         # 3 like
         if valg == "I":
             if max(antall_oversikt) >= 3:
                 print (f"Du har {max(antall_oversikt)} stk {antall_oversikt.index(max(antall_oversikt))+1}'ere, det blir {(3*(antall_oversikt.index(max(antall_oversikt))+1))} poeng")
                 poeng_skjema[11].verdi=(3*(antall_oversikt.index(max(antall_oversikt))+1))
                 poeng_skjema[11].brukt=True
+            else:
+                feil_felt_mld()
+                continue
 
         # 4 like
         if valg == "J":
@@ -245,6 +265,9 @@ while True:
                 print (f"Du har {max(antall_oversikt)} stk {antall_oversikt.index(max(antall_oversikt))+1}'ere, det blir {(4*(antall_oversikt.index(max(antall_oversikt))+1))} poeng")
                 poeng_skjema[12].verdi=(4*(antall_oversikt.index(max(antall_oversikt))+1))
                 poeng_skjema[12].brukt=True
+            else:
+                feil_felt_mld()
+                continue
 
         # Liten Straight
         if valg == "K":
@@ -252,6 +275,9 @@ while True:
                 print(f"Du har fått liten straight, det er 15 poeng.")
                 poeng_skjema[13].verdi = 15
                 poeng_skjema[13].brukt = True
+            else:
+                feil_felt_mld()
+                continue
 
         # Stor straight
         if valg == "L":
@@ -259,6 +285,9 @@ while True:
                 print(f"Du har fått stor straight, det er 20 poeng.")
                 poeng_skjema[14].verdi = 20
                 poeng_skjema[14].brukt = True
+            else:
+                feil_felt_mld()
+                continue
 
         # Hus
         if valg == "M":
@@ -266,6 +295,9 @@ while True:
                 print(f"Du fikk hus med {sum(endelige_verdier)} poeng.")
                 poeng_skjema[15].verdi = sum(endelige_verdier)
                 poeng_skjema[15].brukt = True
+            else:
+                feil_felt_mld()
+                continue
         
         # Sjanse
         if valg == "N":
@@ -279,6 +311,9 @@ while True:
                 print(f"Gratulerer, du har fått Yatzy! Du har 5 stk {antall_oversikt.index(max(antall_oversikt))+1}ere og får 50 poeng!")
                 poeng_skjema[17].verdi = 50
                 poeng_skjema[17].brukt = True
+            else:
+                feil_felt_mld()
+                continue
         
 
 

@@ -12,7 +12,7 @@ class Poengfelt():
         self.verdi = verdi
         self.brukt = brukt
 
-
+# Poengskjema oppsett
 enere0 =           Poengfelt("A - Enere:         ", 0 , False )
 toere1 =           Poengfelt("B - Toere:         ", 0 , False )
 treere2 =          Poengfelt("C - Treere:        ", 0 , False )
@@ -34,13 +34,14 @@ yatzy17 =          Poengfelt("Y - YATZY!:        ", 0 , False )
 sluttstrek18 =     Poengfelt("    ___________________", 0, False)
 sum19 =            Poengfelt("    TOTALT:        ", 0 , False )
 
-# En Tuple som har 19 elementer (0-18)
+# Poengskjema organisering: En Tuple som har 20 elementer (0-19)
 poeng_skjema=(enere0, toere1, treere2, firere3, femere4, seksere5, delestrek6, delsum7, bonus8, ett_par9, to_par10, tre_like11, fire_like12, liten_straight13, stor_straight14, hus15, sjanse16, yatzy17, sluttstrek18, sum19)
 
-# En dictionary som knytter rett index-verdi til hver bokstavstreng i poeng_skjema
+# En dictionary som knytter rett index-verdi til hver bokstavstreng i poeng_skjema, brukes ved valg til å få rett index for en bokstav valgt
 bokstav_nummer_liste = { "A":0, "B":1, "C":2, "D":3, "E":4, "F":5, "G":9, "H":10, "I":11, "J":12, "K":13, "L":14, "M":15, "N":16, "Y":17 }
 
-# Funksjoner:
+
+# Funksjoner:_________________________________________
 
 # Skriver ut poengskjemaet
 def vis_poengskjema(poengskjema):
@@ -52,7 +53,6 @@ def vis_poengskjema(poengskjema):
         else:    
             print(poengskjema[n].navn,poengskjema[n].verdi)
 
-
 # Skriver ut en liste med terningverdiene og om terningen er valgt å beholde
 def vis_terningoversikt(terningliste):
     for n in range(5):
@@ -60,7 +60,6 @@ def vis_terningoversikt(terningliste):
             print ("Terning",str(n+1),":",terningliste[n].verdi)                                
         else:
             print ("Terning",str(n+1),":",terningliste[n].verdi," - beholdt!") 
-
 
 # Lar spilleren velge hvilke terninger som skal beholdes
 def velge_terninger():
@@ -88,14 +87,20 @@ def kast_terninger_igjen(terningsett):
         if terningsett[n].behold==False:
             terningsett[n].verdi=random.randint(1,6)
 
+# Feilmelding ved opptatt felt
 def brukt_felt_mld():
     print("Du har allerede benyttet dette feltet, vennligst velg et annet!")
     print()    
 
+# Funksjon som kalles idet antall kast = 15
+def avslutt():
+    print("Takk for at du spilte, du er ferdig!")
+    quit
 # ____________________________________Hovedspill______________________________________
 
 print("Yatzy spill!")
 
+antall_kast=0
 
 while True:
 
@@ -139,8 +144,10 @@ while True:
     for n in range(1, 7):
         antall_oversikt.append(endelige_verdier.count(n))
 
+    antall_kast+=1
 
 
+    # Valg løkke for å sette poeng på poengskjema
     while True:
         print()
         print()
@@ -152,14 +159,28 @@ while True:
         valg=input("Skriv bokstaven der du vil sett denne kasteserien (eller skriv X for å stryke et felt)): ").upper() 
         print()
         
-
-        # Sjekk om feltet er brukt allerede
-        if poeng_skjema[bokstav_nummer_liste[valg]].brukt == True:
-            brukt_felt_mld()
+        # Sjekk rett input
+        if valg not in ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Y", "X"]:
+            print("Vennligst velg en gyldig bokstav")
             continue
 
         # Stryke et felt
-        
+        if valg=="X":
+            while True:
+                strykefelt = input ("Skriv bokstaven til feltet du vil stryke: ").upper()           
+                if poeng_skjema[bokstav_nummer_liste[strykefelt]].brukt == False:    
+                    poeng_skjema[bokstav_nummer_liste[strykefelt]].brukt=True
+                    poeng_skjema[bokstav_nummer_liste[strykefelt]].verdi=0
+                    break
+                else:
+                    brukt_felt_mld()
+                    continue
+
+        # Sjekk om feltet er brukt allerede
+        if valg != "X":
+            if poeng_skjema[bokstav_nummer_liste[valg]].brukt == True:
+                brukt_felt_mld()
+                continue   
 
         # Sette poeng på enkeltterninger 1-6
         if valg in ["A","B","C","D","E","F"]: 
@@ -197,7 +218,7 @@ while True:
 
             # Det finnes kun ett par i resultatet
             elif len(parverdi)==1:          
-                print (f"Du har ett par {parverdi[0]/2}'ere, med verdi {parverdi[0]} ")
+                print (f"Du har ett par {int(parverdi[0]/2)}'ere, med verdi {int(parverdi[0])} ")
                 poeng_skjema[9].verdi = parverdi[0]
                 poeng_skjema[9].brukt = True
 
@@ -260,19 +281,6 @@ while True:
                 poeng_skjema[17].brukt = True
         
 
-        # Stryke et felt
-        if valg=="X":
-            while True:
-                strykefelt = input ("Skriv bokstaven til feltet du vil stryke: ")           
-                if poeng_skjema[bokstav_nummer_liste[strykefelt]].brukt == False:    
-                    poeng_skjema[bokstav_nummer_liste[strykefelt]].brukt=True
-                    poeng_skjema[bokstav_nummer_liste[strykefelt]].verdi=0
-                    break
-                else:
-                    brukt_felt_mld()
-                    continue
-
-
 
         # Beregn poeng så langt _________________________
         # Delsum
@@ -294,6 +302,10 @@ while True:
 
 
         vis_poengskjema(poeng_skjema)
+
+        if antall_kast==15:
+            avslutt()
+        
         break
 
 

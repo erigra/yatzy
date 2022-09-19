@@ -131,6 +131,8 @@ while True:
     print()
     print("--------------------  Resultat 3. kast: -------------------------")
     vis_terningoversikt(terningsett)
+    print()
+    print()
 
 
     # Ferdig med å kaste terninger denne runden ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -149,7 +151,6 @@ while True:
 
     # Valg-løkke for å sette poeng på poengskjema
     while True:
-        print()
         print()
         print("Du endte opp med følgende terninger:")
         print(endelige_verdier)
